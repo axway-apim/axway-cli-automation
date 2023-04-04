@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # $1 - Service Account client-id
 # $2 - Service Account client-secret
 # $3 - APIServiceRevision name
