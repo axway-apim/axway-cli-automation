@@ -5,6 +5,7 @@
 # $4 - Target Marketplace ID
 
 # Check to be sure variables are present
+echo $1
 [[ -d $4  ]] || { echo "Invalid input." >&2; exit 1; }
 
 # Authenitcate as Service Account
