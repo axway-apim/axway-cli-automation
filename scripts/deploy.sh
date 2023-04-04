@@ -4,6 +4,9 @@
 # $3 - APIServiceRevision name
 # $4 - Target Marketplace ID
 
+# Check to be sure variables are present
+[[ -d $4  ]] || { echo "Invalid input." >&2; exit 1; }
+
 # Authenitcate as Service Account
 axway auth login --client-id $1 --client-secret $2
 
