@@ -1,3 +1,4 @@
+#!/bin/bash
 # $1 - Service Account client-id
 # $2 - Service Account client-secret
 # $3 - APIServiceRevision name
@@ -20,14 +21,11 @@ axway central get apiservice -q "name==$(jq -r '.[0].metadata.references[0].name
 jq --slurp -f asset-template.jq api-service-revision-created.json api-service-created.json > asset.json
 axway central create -f asset.json -o json -y > asset-created.json
 
-# Map APIService to Asset
-# axway central create -f asset-mapping.json -y -o json > asset-mapping-created.json
-
 # Get details for "defaul" stage. Stage name can be replaced with appropriate value
 axway central get stage -q "name==default" -o json > stage-details.json
 
 # Add resource to the asset
-jq --slurp -f asset-mapping.jq env.json asset-created.json stage-details.json api-service-created.json api-service-revision-created.json > asset-resource.json
+jq --slurp -f asset-resource.jq env.json asset-created.json stage-details.json api-service-created.json api-service-revision-created.json > asset-resource.json
 axway central create -f asset-resource.json -o json -y > asset-resource-created.json
 
 # Activate asset
